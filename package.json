@@ -57,6 +57,9 @@
     "portable"
    ]
   },
+  "nsis": {
+   "preCompressedFileExtensions": []
+  },
   "portable": {
    "artifactName": "${name}-${version}-${os}-${arch}-portable.${ext}"
   },
