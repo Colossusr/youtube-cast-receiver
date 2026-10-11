@@ -65,6 +65,15 @@ If you'd rather have it show up in your app menu like a normal program, there's 
 <img src="https://i.imgur.com/gCKYXlz.png" height="500px">
 
 
+## Ad blocking and sponsor skipping
+
+YCR comes with two browser extensions running inside the TV interface:
+
+* [uBlock Origin](https://github.com/gorhill/uBlock) blocks ads and trackers, using its default filter lists. YouTube only opens once uBlock Origin has its lists loaded, a second or so after launch (a few more the very first time), so nothing slips through while it starts up.
+* [SponsorBlock](https://github.com/ajayyy/SponsorBlock) skips the sponsored parts of videos, using the segments people submit to [sponsor.ajay.app](https://sponsor.ajay.app). Out of the box it skips sponsors automatically and leaves the other categories alone.
+
+Their settings are in the **Add-ons** menu. The menu bar stays hidden in fullscreen, so press F11 to leave fullscreen and then Alt to bring it up (on macOS it's in the menu bar at the top of the screen). In SponsorBlock's settings you can set intros, outros, self promotion and the rest to "Auto skip" too; nobody is holding a mouse to click a skip button on a TV, so auto skip is the setting that matters here. Changes apply straight away, even to the video that's already playing.
+
 
 ## Release History
 
@@ -99,6 +108,14 @@ git clone https://github.com/GarrettBlackmon/youtube-cast-receiver
 npm i
 npm run start
 ```
+
+`npm i` also downloads uBlock Origin and SponsorBlock into `extensions/unpacked` (`npm run fetch-extensions` does just that part). Behind a proxy, set `NODE_USE_ENV_PROXY=1` so Node uses your `HTTPS_PROXY` for the download.
+
+### The browser extensions
+
+The extension versions are pinned in `extensions/sources.json`, each with the release zip it comes from and that zip's sha256. They are used as released, except that each one gets a compatibility shim from `extensions/shims` loaded ahead of its own code. Electron only implements part of Chrome's extension API, and the shims fill in what's missing: for uBlock Origin, the toolbar, context menu and stylesheet calls it makes, and for SponsorBlock, the `chrome.storage.sync` it keeps its settings in.
+
+To move to a newer release, change the version, URL and sha256 in `sources.json` and run `npm run fetch-extensions`. If the checksum is wrong the script stops and prints the one it got.
 
 To build for your own platform:
 

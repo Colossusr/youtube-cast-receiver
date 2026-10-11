@@ -1,0 +1,20 @@
+{
+ "ublock-origin": {
+  "name": "uBlock Origin",
+  "version": "1.75.0",
+  "url": "https://github.com/gorhill/uBlock/releases/download/1.75.0/uBlock0_1.75.0.chromium.zip",
+  "sha256": "393cf95709d1074d4022970e9014e434395c53a822387f1e25f43be97cf4b582",
+  "root": "uBlock0.chromium",
+  "shim": "shims/ublock-origin.js",
+  "shimContentScripts": false
+ },
+ "sponsorblock": {
+  "name": "SponsorBlock",
+  "version": "6.1.7",
+  "url": "https://github.com/ajayyy/SponsorBlock/releases/download/6.1.7/ChromeExtension.zip",
+  "sha256": "7c8e3dc8b5e560b480ae8efdf28f4f1101fce0cc32434562a336a89e4962eda3",
+  "root": "",
+  "shim": "shims/sponsorblock.js",
+  "shimContentScripts": true
+ }
+}

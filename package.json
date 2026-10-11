@@ -6,6 +6,8 @@
  "main": "main.js",
  "desktopName": "youtube-cast-receiver.desktop",
  "scripts": {
+  "postinstall": "node scripts/fetch-extensions.js",
+  "fetch-extensions": "node scripts/fetch-extensions.js",
   "start": "electron .",
   "build-local": "electron-builder --mac --windows --linux",
   "release": "electron-builder --mac --windows --linux --publish always"
@@ -14,7 +16,8 @@
  "license": "ISC",
  "devDependencies": {
   "electron": "^43.4.0",
-  "electron-builder": "^26.15.3"
+  "electron-builder": "^26.15.3",
+  "extract-zip": "^2.0.1"
  },
  "build": {
   "appId": "com.garrettblackmon.ycr",
@@ -28,6 +31,12 @@
    "package.json",
    "build/icon.png",
    "renderer/**"
+  ],
+  "extraResources": [
+   {
+    "from": "extensions/unpacked",
+    "to": "extensions"
+   }
   ],
   "mac": {
    "category": "public.app-category.entertainment",
